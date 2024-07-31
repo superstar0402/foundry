@@ -2,5 +2,12 @@
 src = "src"
 out = "out"
 libs = ["lib"]
+solc_version = "0.7.6" 
+
+
+
+[rpc_endpoints]
+default_network = "http://127.0.0.1:8545"
+localhost = "http://127.0.0.1:8545"
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
