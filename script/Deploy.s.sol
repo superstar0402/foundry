@@ -10,6 +10,8 @@ import {TickMath} from "../src/libraries/TickMath.sol";
 contract Deploy is Script {
     address recipient = makeAddr("recipient");
 
+    address poisitionReceiver = makeAddr('poisitionReceiver');
+
     function run() public {
         // Deploy two ERC20 tokens
         MockToken mockUsdt = new MockToken("USDT Tether", "USDT");
@@ -48,13 +50,14 @@ contract Deploy is Script {
         mockDai.approve(address(pool), 5000 * 10 ** 18);
 
         // creation of positions -> call mint
+        uint128 amountToMint = 1000 * 10 ** 18;
 
-        // mint with both ticks below the current tick (below 0?)
-        pool.mint(address(this), -200, -100, 200, "XXX");
+        // // mint with both ticks below the current tick (below 0?)
+        pool.mint(poisitionReceiver, -200000, -100000, amountToMint, address(pool));
 
-        // mint with the lower tick below tick 0 and the upper tick above
-        pool.mint(address(this), 100, 100, 200, "XXX");
+        // // // mint with the lower tick below tick 0 and the upper tick above
+        // // pool.mint(address(this), 100, 100, 200, "XXX");
 
-        //both ticks are above the current tick
+
     }
 }
